@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tara and Ed\'s Wedding</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="app_not_available">App not available</string>
+    <array name="menu_items_array">
+        <item>RSVP</item>
+        <item>Map</item>
+        <item>Info</item>
+    </array>
+</resources>
