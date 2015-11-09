@@ -1,11 +1,8 @@
 package edtarawedding.elmund.io.taraandedswedding;
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +24,7 @@ public class MainActivity extends Activity {
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-    private String[] mPlanetTitles;
+    private String[] menuItemsArray;
     Toolbar toolbar;
     TextView toolbartitle;
 
@@ -37,7 +34,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mTitle = mDrawerTitle = getTitle();
-        mPlanetTitles = getResources().getStringArray(R.array.menu_items_array);
+        menuItemsArray = getResources().getStringArray(R.array.menu_items_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         toolbar = (Toolbar) findViewById(R.id.my_awesome_toolbar);
@@ -47,7 +44,7 @@ public class MainActivity extends Activity {
         ////mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mPlanetTitles));
+                R.layout.drawer_list_item, menuItemsArray));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 
@@ -124,11 +121,12 @@ public class MainActivity extends Activity {
     private void selectItem(int position) {
 
         // Load your conten here
-        Toast.makeText(MainActivity.this, "Position" + position, Toast.LENGTH_LONG).show();
+        String str = getResources().getStringArray(R.array.menu_items_array)[position];
+        Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
 
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(mPlanetTitles[position]);
+        setTitle(menuItemsArray[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
