@@ -15,7 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.app.Fragment;
+import android.app.FragmentManager;
 
 public class MainActivity extends Activity {
     private DrawerLayout mDrawerLayout;
@@ -122,12 +123,36 @@ public class MainActivity extends Activity {
 
         // Load your conten here
         String str = getResources().getStringArray(R.array.menu_items_array)[position];
-        Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
+        //Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
 
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(menuItemsArray[position]);
+        setTitle(menuItemsArray[position] + ":" + position);
         mDrawerLayout.closeDrawer(mDrawerList);
+
+
+        Fragment fragment;
+        switch(position){
+            case 0:
+                fragment = new RSVPFragment();
+                break;
+            case 1:
+                fragment = new MapFragment();
+                break;
+            case 2:
+                fragment = new InfoFragment();
+                break;
+            default:
+                fragment = new RSVPFragment();
+
+        }
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .commit();
+
+
     }
 
     @Override
