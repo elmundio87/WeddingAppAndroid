@@ -127,7 +127,7 @@ public class MainActivity extends Activity {
 
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(menuItemsArray[position] + ":" + position);
+        setTitle(menuItemsArray[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
 
 
