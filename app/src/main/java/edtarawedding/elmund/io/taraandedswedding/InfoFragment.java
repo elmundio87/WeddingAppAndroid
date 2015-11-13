@@ -23,7 +23,7 @@ public class InfoFragment extends Fragment {
 
         String url = "file:///android_asset/info.html";
 
-        View rootView = inflater.inflate(R.layout.fragment_rsvp, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_info, container, false);
 
         WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 

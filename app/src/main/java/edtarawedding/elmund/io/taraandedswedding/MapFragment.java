@@ -29,7 +29,7 @@ public class MapFragment extends Fragment {
 
         String url = "file:///android_asset/map.html";
 
-        View rootView = inflater.inflate(R.layout.fragment_rsvp, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
         WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 

@@ -23,7 +23,7 @@ public class VenueFragment extends Fragment {
 
         String url = "http://www.hatfield-house.co.uk";
 
-        View rootView = inflater.inflate(R.layout.fragment_rsvp, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_venue, container, false);
 
         WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 
