@@ -6,6 +6,7 @@
     <array name="menu_items_array">
         <item>RSVP</item>
         <item>Map</item>
+        <item>Venue Website</item>
         <item>Info</item>
     </array>
     <string name="title_activity_rsvp">RSVP</string>
