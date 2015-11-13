@@ -1,6 +1,7 @@
 package edtarawedding.elmund.io.taraandedswedding;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import java.util.Locale;
 
 
 /**
@@ -43,5 +46,11 @@ public class MapFragment extends Fragment {
         wbvBrowser.loadUrl(url);
 
         return rootView;
+    }
+
+    public void openMap(View view){
+        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", 51.760453, -0.209228);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        view.getContext().startActivity(intent);
     }
 }
