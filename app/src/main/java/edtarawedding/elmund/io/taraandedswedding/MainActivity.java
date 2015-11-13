@@ -140,7 +140,7 @@ public class MainActivity extends Activity {
                 fragment = new MapFragment();
                 break;
             case 2:
-                fragment = new InfoFragment();
+                fragment = new VenueFragment();
                 break;
             case 3:
                 fragment = new InfoFragment();

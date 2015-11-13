@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edtarawedding.elmund.io.taraandedswedding" >
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,6 +30,11 @@
         <activity
             android:name=".Info"
             android:label="@string/title_activity_info"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Venue"
+            android:label="@string/title_activity_venue"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>

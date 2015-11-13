@@ -3,8 +3,8 @@
     android:layout_height="match_parent" android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    android:paddingBottom="0dp" tools:showIn="@layout/activity_info"
-    tools:context="edtarawedding.elmund.io.taraandedswedding.InfoFragment">
+    android:paddingBottom="0dp" tools:showIn="@layout/activity_venue"
+    tools:context="edtarawedding.elmund.io.taraandedswedding.VenueFragment">
 
     <WebView
         android:layout_width="wrap_content"
