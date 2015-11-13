@@ -142,6 +142,9 @@ public class MainActivity extends Activity {
             case 2:
                 fragment = new InfoFragment();
                 break;
+            case 3:
+                fragment = new InfoFragment();
+                break;
             default:
                 fragment = new RSVPFragment();
 

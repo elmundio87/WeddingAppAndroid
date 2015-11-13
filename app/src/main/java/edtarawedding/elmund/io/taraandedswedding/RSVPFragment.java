@@ -1,14 +1,17 @@
 package edtarawedding.elmund.io.taraandedswedding;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.WebChromeClient;
 
 import android.util.Log;
+import android.webkit.WebViewFragment;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -22,25 +25,23 @@ public class RSVPFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_rsvp , container, false);
-        WebView mWebView = (WebView) v.findViewById(R.id.webView);
 
-        //mWebView.getSettings().setJavaScriptEnabled(true);
+        String url = getResources().getString(R.string.rsvp_url);
 
+        View rootView = inflater.inflate(R.layout.fragment_rsvp, container, false);
 
-        mWebView.setWebViewClient(new WebViewClient()
-        {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url)
-            {
+        WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
+
+        wbvBrowser.getSettings().setJavaScriptEnabled(true);
+
+        wbvBrowser.setWebViewClient(new WebViewClient() {
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return false;
             }
         });
 
-        mWebView.loadUrl("http://www.google.com/");
+        wbvBrowser.loadUrl(url);
 
-
-
-        return inflater.inflate(R.layout.fragment_rsvp, container, false);
+        return rootView;
     }
 }
