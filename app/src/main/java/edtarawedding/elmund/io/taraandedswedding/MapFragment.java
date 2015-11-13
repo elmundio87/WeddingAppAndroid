@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 
 import java.util.Locale;
 
@@ -31,6 +32,14 @@ public class MapFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
+        final Button button = (Button) rootView.findViewById(R.id.openMapButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openMap(v);
+            }
+        });
+
+
         WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 
         wbvBrowser.getSettings().setJavaScriptEnabled(true);
@@ -49,7 +58,7 @@ public class MapFragment extends Fragment {
     }
 
     public void openMap(View view){
-        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", 51.760453, -0.209228);
+        String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=Hatfield+House", 51.760453, -0.209228);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         view.getContext().startActivity(intent);
     }
