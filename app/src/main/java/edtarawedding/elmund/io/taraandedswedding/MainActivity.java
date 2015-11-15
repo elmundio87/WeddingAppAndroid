@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
     Toolbar toolbar;
     TextView toolbartitle;
 
+    int currentFragment = 0;
+
     Fragment[] fragments = new Fragment[4];
 
     public MainActivity(){
@@ -71,6 +73,13 @@ public class MainActivity extends Activity {
                 //getSupportActionBar().setTitle(mTitle);
                 toolbartitle.setText(mTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+
+                Fragment fragment = fragments[currentFragment];
+
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .commit();
             }
 
             public void onDrawerOpened(View drawerView) {
@@ -88,6 +97,13 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
+
+        Fragment fragment = fragments[currentFragment];
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .commit();
 
     }
 
@@ -138,15 +154,8 @@ public class MainActivity extends Activity {
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);
         setTitle(menuItemsArray[position]);
+        currentFragment = position;
         mDrawerLayout.closeDrawer(mDrawerList);
-
-        Fragment fragment = fragments[position];
-
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
-                .commit();
-
 
     }
 
