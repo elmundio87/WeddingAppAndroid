@@ -1,12 +1,18 @@
 package edtarawedding.elmund.io.taraandedswedding;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -38,7 +44,7 @@ private ZXingScannerView mScannerView;
 
         yourButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.v("lol", "lol");
+                passwordDialogShow();
             }
         });
     }
@@ -79,5 +85,46 @@ private ZXingScannerView mScannerView;
 
     private boolean validatePassword(String password){
         return password.equals("STARWARSDAY");
+    }
+
+    private void passwordDialogShow(){
+        AlertDialog.Builder b = new AlertDialog.Builder(this);
+
+        final EditText input = new EditText(this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        b.setView(input);
+
+        b.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (validatePassword(input.getText().toString())) {
+                            openSesame();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Incorrect password", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+        b.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = b.create();
+        alertDialog.setTitle("PASSWORD");
+        alertDialog.setMessage("Enter Password");
+
+
+
+
+        alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
+
+        alertDialog.show();
     }
 }
