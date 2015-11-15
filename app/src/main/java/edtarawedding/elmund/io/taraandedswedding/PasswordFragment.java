@@ -51,7 +51,7 @@ public class PasswordFragment extends Fragment implements ZXingScannerView.Resul
         });
 
         boolean logged_in = pref.getBoolean("logged_in" ,false);
-        logged_in = false;
+        
         if(!logged_in) {
 
         }else{
