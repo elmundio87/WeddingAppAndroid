@@ -84,7 +84,7 @@ private ZXingScannerView mScannerView;
     }
 
     private boolean validatePassword(String password){
-        return password.equals("STARWARSDAY");
+        return password.toUpperCase().equals("STARWARSDAY");
     }
 
     private void passwordDialogShow(){
