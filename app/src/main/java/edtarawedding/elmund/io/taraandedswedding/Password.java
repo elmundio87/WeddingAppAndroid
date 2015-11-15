@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,32 +25,46 @@ private ZXingScannerView mScannerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_password);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
-        Button buttonTemplate = (Button) findViewById(R.id.passwordButton);
 
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
-        setContentView(mScannerView);                // Set the scanner view as the content view
+        
+        setContentView(R.layout.activity_password);
+
+        SharedPreferences pref = getPreferences(Context.MODE_PRIVATE);
+        boolean logged_in = pref.getBoolean("logged_in" ,false);
+
+        if(!logged_in) {
+            Button buttonTemplate = (Button) findViewById(R.id.passwordButton);
 
 
-        Button yourButton;
-        yourButton = new Button(this);
+            setContentView(mScannerView);                // Set the scanner view as the content view
 
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) buttonTemplate.getLayoutParams();
-        yourButton.setLayoutParams(lp);
-        yourButton.setText("ENTER PASSWORD");
-        mScannerView.addView(yourButton);
 
-        yourButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                passwordDialogShow();
-            }
-        });
+            Button yourButton;
+            yourButton = new Button(this);
+
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) buttonTemplate.getLayoutParams();
+            yourButton.setLayoutParams(lp);
+            yourButton.setText("ENTER PASSWORD");
+            mScannerView.addView(yourButton);
+
+            yourButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    passwordDialogShow();
+                }
+            });
+        }else{
+            openSesame();
+        }
     }
 
     public void openSesame() {
+
+        SharedPreferences pref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("logged_in", true);
+        editor.commit();
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
