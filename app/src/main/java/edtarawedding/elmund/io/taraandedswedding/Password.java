@@ -27,7 +27,7 @@ private ZXingScannerView mScannerView;
         super.onCreate(savedInstanceState);
 
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
-        
+
         setContentView(R.layout.activity_password);
 
         SharedPreferences pref = getPreferences(Context.MODE_PRIVATE);
@@ -40,15 +40,15 @@ private ZXingScannerView mScannerView;
             setContentView(mScannerView);                // Set the scanner view as the content view
 
 
-            Button yourButton;
-            yourButton = new Button(this);
+            Button enterPasswordButton;
+            enterPasswordButton = new Button(this);
 
             RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) buttonTemplate.getLayoutParams();
-            yourButton.setLayoutParams(lp);
-            yourButton.setText("ENTER PASSWORD");
-            mScannerView.addView(yourButton);
+            enterPasswordButton.setLayoutParams(lp);
+            enterPasswordButton.setText("ENTER PASSWORD");
+            mScannerView.addView(enterPasswordButton);
 
-            yourButton.setOnClickListener(new View.OnClickListener() {
+            enterPasswordButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     passwordDialogShow();
                 }
