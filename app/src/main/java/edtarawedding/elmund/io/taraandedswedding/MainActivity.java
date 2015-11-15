@@ -29,6 +29,15 @@ public class MainActivity extends Activity {
     Toolbar toolbar;
     TextView toolbartitle;
 
+    Fragment[] fragments = new Fragment[4];
+
+    public MainActivity(){
+        fragments[0] = new RSVPFragment();
+        fragments[1] = new MapFragment();
+        fragments[2] = new VenueFragment();
+        fragments[3] = new InfoFragment();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +88,7 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
+
     }
 
     @Override
@@ -130,25 +140,7 @@ public class MainActivity extends Activity {
         setTitle(menuItemsArray[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
 
-
-        Fragment fragment;
-        switch(position){
-            case 0:
-                fragment = new RSVPFragment();
-                break;
-            case 1:
-                fragment = new MapFragment();
-                break;
-            case 2:
-                fragment = new VenueFragment();
-                break;
-            case 3:
-                fragment = new InfoFragment();
-                break;
-            default:
-                fragment = new RSVPFragment();
-
-        }
+        Fragment fragment = fragments[position];
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
