@@ -69,7 +69,9 @@ public class PasswordFragment extends Fragment implements ZXingScannerView.Resul
         editor.commit();
 
         Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
