@@ -19,6 +19,8 @@ import java.util.Locale;
  */
 public class MapFragment extends Fragment {
 
+    View v;
+
     public MapFragment() {
     }
 
@@ -26,33 +28,36 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-
-        String url = "file:///android_asset/map.html";
-
         View rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
-        final Button button = (Button) rootView.findViewById(R.id.openMapButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openMap(v);
-            }
-        });
+        if(v == null) {
+            String url = "file:///android_asset/map.html";
 
+            final Button button = (Button) rootView.findViewById(R.id.openMapButton);
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    openMap(v);
+                }
+            });
 
-        WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
+            WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 
-        wbvBrowser.getSettings().setJavaScriptEnabled(true);
-        wbvBrowser.getSettings().setBuiltInZoomControls(true);
-        wbvBrowser.getSettings().setDisplayZoomControls(false);
+            wbvBrowser.getSettings().setJavaScriptEnabled(true);
+            wbvBrowser.getSettings().setBuiltInZoomControls(true);
+            wbvBrowser.getSettings().setDisplayZoomControls(false);
 
-        wbvBrowser.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-        });
+            wbvBrowser.setWebViewClient(new WebViewClient() {
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    return false;
+                }
+            });
 
-        wbvBrowser.loadUrl(url);
+            wbvBrowser.loadUrl(url);
+
+            v = rootView;
+        }else{
+            return v;
+        }
 
         return rootView;
     }

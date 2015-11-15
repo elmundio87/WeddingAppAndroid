@@ -13,6 +13,8 @@ import android.webkit.WebViewClient;
  */
 public class InfoFragment extends Fragment {
 
+    View v;
+
     public InfoFragment() {
     }
 
@@ -20,29 +22,36 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-        String url = "file:///android_asset/info.html";
-
         View rootView = inflater.inflate(R.layout.fragment_info, container, false);
 
-        WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
+        if(v == null){
+            String url = "file:///android_asset/info.html";
 
-        wbvBrowser.getSettings().setJavaScriptEnabled(true);
+            WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 
-        wbvBrowser.setWebViewClient(new WebViewClient() {
+            wbvBrowser.getSettings().setJavaScriptEnabled(true);
 
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                view.setVisibility(View.VISIBLE);
-            }
+            wbvBrowser.setWebViewClient(new WebViewClient() {
 
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-        });
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+                    view.setVisibility(View.VISIBLE);
+                }
 
-        wbvBrowser.loadUrl(url);
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    return false;
+                }
+            });
+
+            wbvBrowser.loadUrl(url);
+
+            v = rootView;
+        }else{
+            return v;
+        }
+
+
 
         return rootView;
     }

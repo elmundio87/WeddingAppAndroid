@@ -13,6 +13,8 @@ import android.webkit.WebViewClient;
  */
 public class VenueFragment extends Fragment {
 
+    View v;
+
     public VenueFragment() {
     }
 
@@ -20,29 +22,35 @@ public class VenueFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-        String url = "http://www.hatfield-house.co.uk";
-
         View rootView = inflater.inflate(R.layout.fragment_venue, container, false);
 
-        WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
+        if(v == null){
+            String url = "http://www.hatfield-house.co.uk";
 
-        wbvBrowser.getSettings().setJavaScriptEnabled(true);
+            WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 
-        wbvBrowser.setWebViewClient(new WebViewClient() {
+            wbvBrowser.getSettings().setJavaScriptEnabled(true);
 
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                view.setVisibility(View.VISIBLE);
-            }
+            wbvBrowser.setWebViewClient(new WebViewClient() {
 
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-        });
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+                    view.setVisibility(View.VISIBLE);
+                }
 
-        wbvBrowser.loadUrl(url);
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    return false;
+                }
+            });
+
+            wbvBrowser.loadUrl(url);
+
+            v = rootView;
+
+        }else{
+            return v;
+        }
 
         return rootView;
     }

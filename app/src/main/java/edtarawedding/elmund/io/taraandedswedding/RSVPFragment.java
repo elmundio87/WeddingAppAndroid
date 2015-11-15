@@ -19,6 +19,8 @@ import android.webkit.WebViewFragment;
  */
 public class RSVPFragment extends Fragment {
 
+    View v;
+
     public RSVPFragment() {
     }
 
@@ -26,38 +28,45 @@ public class RSVPFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-        String url = getResources().getString(R.string.rsvp_url);
-
         View rootView = inflater.inflate(R.layout.fragment_rsvp, container, false);
 
-        final WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
+        if(v == null){
 
-        wbvBrowser.getSettings().setJavaScriptEnabled(true);
+            String url = getResources().getString(R.string.rsvp_url);
 
-        wbvBrowser.setWebViewClient(new WebViewClient() {
+            final WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                view.setVisibility(View.VISIBLE);
+            wbvBrowser.getSettings().setJavaScriptEnabled(true);
 
-                String javascript = "(function() { document.getElementsByClassName('ss-footer')[0].style.display = 'none' })();";
+            wbvBrowser.setWebViewClient(new WebViewClient() {
 
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-                    wbvBrowser.evaluateJavascript(javascript,null);
-                } else {
-                    wbvBrowser.loadUrl("javascript:"+ javascript);
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+                    view.setVisibility(View.VISIBLE);
+
+                    String javascript = "(function() { document.getElementsByClassName('ss-footer')[0].style.display = 'none' })();";
+
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                        wbvBrowser.evaluateJavascript(javascript, null);
+                    } else {
+                        wbvBrowser.loadUrl("javascript:" + javascript);
+                    }
+
                 }
 
-            }
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    return false;
+                }
+            });
 
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-        });
+            wbvBrowser.loadUrl(url);
 
-        wbvBrowser.loadUrl(url);
+            v = rootView;
+
+        }else{
+            return v;
+        }
 
         return rootView;
     }
