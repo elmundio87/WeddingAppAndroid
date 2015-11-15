@@ -4,7 +4,8 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:paddingBottom="0dp" tools:showIn="@layout/activity_venue"
-    tools:context="edtarawedding.elmund.io.taraandedswedding.VenueFragment">
+    tools:context="edtarawedding.elmund.io.taraandedswedding.VenueFragment"
+    android:background="#013856">
 
     <WebView
         android:layout_width="wrap_content"
@@ -16,6 +17,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>

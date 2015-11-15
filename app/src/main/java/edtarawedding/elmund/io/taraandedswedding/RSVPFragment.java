@@ -35,6 +35,13 @@ public class RSVPFragment extends Fragment {
         wbvBrowser.getSettings().setJavaScriptEnabled(true);
 
         wbvBrowser.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                view.setVisibility(View.VISIBLE);
+            }
+
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return false;
             }
@@ -44,4 +51,6 @@ public class RSVPFragment extends Fragment {
 
         return rootView;
     }
+
+
 }
