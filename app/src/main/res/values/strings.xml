@@ -16,4 +16,7 @@
     <string name="rsvp_url">https://docs.google.com/forms/d/1wcI79U_bRPTzfLr-6wnKSL-WG2ZDX72djELdK7HIZ88/viewform?entry.1357434392&amp;entry.45670494=0&amp;entry.924275645</string>
     <string name="title_activity_venue">Venue</string>
     <string name="title_activity_password">Password</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
