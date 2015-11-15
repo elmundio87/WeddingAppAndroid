@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebChromeClient;
@@ -30,7 +31,7 @@ public class RSVPFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_rsvp, container, false);
 
-        WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
+        final WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 
         wbvBrowser.getSettings().setJavaScriptEnabled(true);
 
@@ -40,6 +41,15 @@ public class RSVPFragment extends Fragment {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 view.setVisibility(View.VISIBLE);
+
+                String javascript = "(function() { document.getElementsByClassName('ss-footer')[0].style.display = 'none' })();";
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                    wbvBrowser.evaluateJavascript(javascript,null);
+                } else {
+                    wbvBrowser.loadUrl("javascript:"+ javascript);
+                }
+
             }
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -51,6 +61,5 @@ public class RSVPFragment extends Fragment {
 
         return rootView;
     }
-
 
 }
