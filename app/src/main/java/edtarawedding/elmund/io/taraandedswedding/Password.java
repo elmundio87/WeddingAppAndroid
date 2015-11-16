@@ -7,6 +7,9 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 public class Password extends Activity {
@@ -17,6 +20,9 @@ public class Password extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
+
+        TextView tv = (TextView) this.findViewById(R.id.permissionLabel);
+        tv.setVisibility(View.VISIBLE);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -41,6 +47,8 @@ public class Password extends Activity {
                 // app-defined int constant. The callback method gets the
                 // result of the request.
             }
+        }else{
+            tv.setVisibility(View.INVISIBLE);
         }
 
         PasswordFragment fragment = new PasswordFragment();
@@ -57,12 +65,16 @@ public class Password extends Activity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
+                    TextView tv = (TextView) this.findViewById(R.id.permissionLabel);
+                    tv.setVisibility(View.INVISIBLE);
+
                     PasswordFragment fragment = new PasswordFragment();
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
                 } else {
-
+                    TextView tv = (TextView) this.findViewById(R.id.permissionLabel);
+                    tv.setVisibility(View.VISIBLE);
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                 }

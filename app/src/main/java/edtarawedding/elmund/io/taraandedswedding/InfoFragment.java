@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -30,6 +31,10 @@ public class InfoFragment extends Fragment {
             WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 
             wbvBrowser.getSettings().setJavaScriptEnabled(true);
+            wbvBrowser.getSettings().setBuiltInZoomControls(true);
+            wbvBrowser.getSettings().setDisplayZoomControls(false);
+            wbvBrowser.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+            wbvBrowser.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
 
             wbvBrowser.setWebViewClient(new WebViewClient() {
 

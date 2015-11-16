@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.ActivityCompat;
@@ -74,7 +75,7 @@ public class PasswordFragment extends Fragment implements ZXingScannerView.Resul
         editor.commit();
 
         Intent intent = new Intent(getActivity(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         getActivity().finish();
     }
@@ -113,7 +114,14 @@ public class PasswordFragment extends Fragment implements ZXingScannerView.Resul
     }
 
     private void passwordDialogShow(){
-        AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+
+        AlertDialog.Builder b;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            b = new AlertDialog.Builder(getActivity(), android.R.style.Theme_Material_Light_Dialog_Alert);
+        } else {
+            b = new AlertDialog.Builder(getActivity());
+        }
 
         final EditText input = new EditText(getActivity());
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(

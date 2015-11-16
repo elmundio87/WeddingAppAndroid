@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ValueCallback;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebChromeClient;
@@ -37,6 +38,10 @@ public class RSVPFragment extends Fragment {
             final WebView wbvBrowser = (WebView) rootView.findViewById(R.id.webView);
 
             wbvBrowser.getSettings().setJavaScriptEnabled(true);
+            wbvBrowser.getSettings().setBuiltInZoomControls(true);
+            wbvBrowser.getSettings().setDisplayZoomControls(false);
+            wbvBrowser.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+            wbvBrowser.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
 
             wbvBrowser.setWebViewClient(new WebViewClient() {
 
