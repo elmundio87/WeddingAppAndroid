@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -45,6 +46,8 @@ public class MapFragment extends Fragment {
             wbvBrowser.getSettings().setJavaScriptEnabled(true);
             wbvBrowser.getSettings().setBuiltInZoomControls(true);
             wbvBrowser.getSettings().setDisplayZoomControls(false);
+            wbvBrowser.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+            wbvBrowser.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
 
             wbvBrowser.setWebViewClient(new WebViewClient() {
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
