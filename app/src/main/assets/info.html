@@ -4,26 +4,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
         html {
-        font-family: 'Helvetica Neue', 'Helvetica, Arial', 'sans-serif';
-        background-color: ivory
+            font-family: 'Helvetica Neue', 'Helvetica, Arial', 'sans-serif';
+            background-color: ivory
         }
         #contents {
-        list-style: none
+            list-style: none
         }
-        #credits{
+        #royal_blue{
+            background: #4169E1;
+            height:100px;
+            width:100px;
+            margin-top:30px;
+            margin-left: -50px;
+            border-radius: 10px;
+            position: relative;
+            left: 50%;
+        }
+        #royal_blue_label{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            width: 100%;
+            text-align: center;
+            text-shadow: 2px 2px #000;
+        }
 
-        }
     </style>
 </head>
 <body>
 
-<h1>Where is the ceremony taking place?</h1>
-<div>
-    The ceremony and the afterparty are both located at the Old Palace building at Hatfield House, in Hertfordshire.
-</div>
+    <h1 class="question">Where is the ceremony taking place?</h1>
+    <div class="answer">
+        The ceremony and the afterparty are both located at the Old Palace building at Hatfield House, in Hertfordshire.
+    </div>
 
-<h1 id="answer1">How do I get there?</h2>
-    <div>
+    <h1 class="question">How do I get there?</h1>
+    <div class="answer">
         <h2>By Road:</h2>
 
         Hatfield House is 21 miles from Central London, 7 miles North of the M25 motorway (junction 23) and 2 miles East of the A1(M) (junction 4). Exit the A1(M) at junction 4 (after the Hatfield Tunnel if travelling from the South) and follow the brown leisure signs for Hatfield House via the A414 and A1000. For Sat Nav please use AL9 5HX.
@@ -33,18 +50,18 @@
         The pedestrian entrance to Hatfield Park is opposite Hatfield railway station. The fast train from Kings Cross to Hatfield takes 20 minutes. There are London Underground links with this mainline at Finsbury Park (Piccadilly and Victoria lines). Local bus services regularly drop off at Hatfield railway station.
     </div>
 
-    <h1 id="answer2">Where can I park?</h1>
-    <div>
+    <h1 class="question">Where can I park?</h1>
+    <div class="answer">
         The venue has a sizeable onsite car park that can be used all day, free of charge.
     </div>
 
-    <h1 id="answer3">When should I arrive?</h1>
-    <div>
+    <h1 class="question">When should I arrive?</h1>
+    <div class="answer">
         The ceremony starts at 12:00PM, so you should aim to arrive by 11:30AM.
     </div>
 
-    <h1 id="answer4">What are the food options?</h1>
-    <div>
+    <h1 class="question">What are the food options?</h1>
+    <div class="answer">
         <h2>For the wedding breakfast</h2>
         <ol>
             <li>Corn fed breast of chicken with potato puree, pancetta, wilted winter greens and a wild mushroom veloute.</li>
@@ -57,13 +74,22 @@
 
     </div>
 
-    <h1 id="answer5">Is there accomodation at the venue?</h1>
-    <div>
+    <h1 class="question">Is there accomodation at the venue?</h1>
+    <div class="answer">
         Unfortunately the venue does not provide any accomodation. There is a Premier Inn and a TravelLodge in Hatfield, as well as several hotels in nearby St Albans.
     </div>
 
-    <h1 id="answer6">Is there a wedding gift list?</h1>
-    <div>
+    <h1 class="question">Is there a dress code?</h1>
+    <div class="answer">
+        You're entitled to wear whatever you deem suitable. That being said, the wedding party (the Bridesmaids, the Best Man and the Groom ) will be wearing Royal Blue, so try and avoid this colour if you can!
+
+        <div id="royal_blue">
+            <div id="royal_blue_label">Royal Blue</div>
+        </div>
+    </div>
+
+    <h1 class="question">Is there a wedding gift list?</h1>
+    <div class="answer">
         Your presence is present enough, but if you would like to give a gift, cash gifts would be greatly appreciated.
     </div>
 
