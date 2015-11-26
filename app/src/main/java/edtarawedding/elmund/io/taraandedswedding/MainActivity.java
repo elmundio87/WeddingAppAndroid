@@ -1,8 +1,10 @@
 package edtarawedding.elmund.io.taraandedswedding;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -32,6 +36,7 @@ public class MainActivity extends Activity {
 
     int lastFragment = 0;
     int currentFragment = 0;
+
 
     Fragment[] fragments = new Fragment[4];
 
@@ -95,6 +100,7 @@ public class MainActivity extends Activity {
 
             }
 
+
             public void onDrawerOpened(View drawerView) {
                 //getSupportActionBar().setTitle(mDrawerTitle);
                 toolbartitle.setText(mDrawerTitle);
@@ -117,6 +123,8 @@ public class MainActivity extends Activity {
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .commit();
+
+        onCoachMark();
 
     }
 
@@ -197,5 +205,25 @@ public class MainActivity extends Activity {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public void onCoachMark(){
+
+        final Dialog dialog = new Dialog(this, R.style.WalkthroughTheme);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        //dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        dialog.setContentView(R.layout.couch_mark);
+        dialog.setCanceledOnTouchOutside(true);
+        //for dismissing anywhere you touch
+        View masterView = dialog.findViewById(R.id.coach_mark_master_view);
+        masterView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
