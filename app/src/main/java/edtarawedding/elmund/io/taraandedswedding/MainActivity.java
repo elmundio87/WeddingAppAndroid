@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
     Toolbar toolbar;
     TextView toolbartitle;
 
+    int lastFragment = 0;
     int currentFragment = 0;
 
     Fragment[] fragments = new Fragment[4];
@@ -72,17 +73,25 @@ public class MainActivity extends Activity {
         ) {
             public void onDrawerClosed(View view) {
                 //getSupportActionBar().setTitle(mTitle);
-                toolbartitle.setText(mTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
 
-                Fragment fragment = fragments[currentFragment];
 
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                transaction.replace(R.id.content_frame, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+
+                    toolbartitle.setText(mTitle);
+                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+
+                    if(lastFragment != currentFragment) {
+
+                        Fragment fragment = fragments[currentFragment];
+
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                        transaction.replace(R.id.content_frame, fragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+
+                    }
+
 
             }
 
@@ -158,6 +167,7 @@ public class MainActivity extends Activity {
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);
         setTitle(menuItemsArray[position]);
+        lastFragment = currentFragment;
         currentFragment = position;
         mDrawerLayout.closeDrawer(mDrawerList);
 
