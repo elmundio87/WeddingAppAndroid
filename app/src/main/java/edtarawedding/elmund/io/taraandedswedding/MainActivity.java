@@ -3,6 +3,8 @@ package edtarawedding.elmund.io.taraandedswedding;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -124,7 +127,12 @@ public class MainActivity extends Activity {
                 .replace(R.id.content_frame, fragment)
                 .commit();
 
-        onCoachMark();
+
+        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+        boolean help_shown = pref.getBoolean("help_shown" ,false);
+        if(!help_shown) {
+            onCoachMark();
+        }
 
     }
 
@@ -221,6 +229,10 @@ public class MainActivity extends Activity {
         masterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences pref = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putBoolean("help_shown", true);
+                editor.commit();
                 dialog.dismiss();
             }
         });
